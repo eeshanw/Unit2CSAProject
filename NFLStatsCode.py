@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as py
 
 df = pd.read_csv('nfl_offense_cleaned.csv')
-print(df.dtypes)
 
 def cleanFile(csv):
     yearNum = 2017
