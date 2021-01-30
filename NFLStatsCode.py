@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as py
 
 df = pd.read_csv('nfl_offense_cleaned.csv')
-print (df)
+print(df.dtypes)
 
 def cleanFile(csv):
     yearNum = 2017
@@ -19,6 +19,9 @@ def referenceSingle(csv, n):
 def referenceSingleYear(csv, y):
     print(csv.loc[csv.YEAR == y])
 
+def referenceSingleYearPos(csv, y, p):
+    print(csv.loc[(csv.YEAR == y) & (csv.POS == p)])
+
 #implementation
 
 df = cleanFile(df)
@@ -29,5 +32,9 @@ if (question == "Single"):
         name = input("Enter the name of the player: ")
         referenceSingle(df, name)
     elif (q1 == "Year"):
-        year = input("Enter the year: ")
-        referenceSingleYear(df, year)
+        year = float(input("Enter the year: "))
+        pos = str(input("What position would you like to search for (QB or ALL): "))
+        if (pos == "QB"):
+            referenceSingleYearPos(df, year, pos)
+        elif (pos == "ALL"):
+            referenceSingleYear(df, year)
