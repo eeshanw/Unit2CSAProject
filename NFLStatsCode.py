@@ -37,3 +37,15 @@ if (question == "Single"):
             referenceSingleYearPos(df, year, pos)
         elif (pos == "ALL"):
             referenceSingleYear(df, year)
+elif (question == "Cumulative"):
+    q3 = input("Would you like to search for Player or Position: ")
+    if (q3 == "Player"):
+        q2 = input("Enter the name of the player: ")
+        playerchart = (df.loc[df.PLAYER == q2])
+        playerchart = playerchart.drop('YEAR', axis=1)
+        average = playerchart.mean(axis=0)
+        print(average)
+    elif (q3 == "Position"):
+        q4 = input("Enter the position: ")
+        positionchart = (df.loc[df.POS == q4])
+        print(positionchart)
