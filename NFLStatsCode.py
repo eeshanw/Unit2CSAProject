@@ -2,8 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as py
 
+#allows you to read the csv file and analyze the data
 df = pd.read_csv('nfl_offense_cleaned.csv')
 
+#removes the data for the year 2017 and resets the index column
 def cleanFile(csv):
     yearNum = 2017
     csv = csv[csv.YEAR != 2017.0]
@@ -12,18 +14,28 @@ def cleanFile(csv):
     csv = csv.drop(columns = ['RK'])
     return csv
 
+#finds entries for a certain player in the data set
 def referenceSingle(csv, n):
     print(csv.loc[csv.PLAYER == n])
 
+#finds entries for a certain year
 def referenceSingleYear(csv, y):
     print(csv.loc[csv.YEAR == y])
 
+#finds entries for a certain position in a certain year
 def referenceSingleYearPos(csv, y, p):
-    print(csv.loc[(csv.YEAR == y) & (csv.POS == p)])
+    print(csv.loc[(csv.YEAR == y) & (csv.Positions == 'QB')])
 
 #implementation
 
 df = cleanFile(df)
+
+#creates a new column for the position of each player in the dataframe
+POSITION = []
+for i in df.POS:
+    POSITION.append((str(i)).strip())
+df.insert(15, 'Positions', POSITION, True)
+
 question = input("What stat would you like to view (Single or Cumulative): ")
 if (question == "Single"):
     q1 = input("Would you like to search for Player or Year: ")
