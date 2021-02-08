@@ -149,12 +149,12 @@ elif (question == "Cumulative"):
                 plotPositions(df)
         elif (q4 == "team"):
             team = str(input("Which team would you like to search for: "))
-            teamStat(csv, team)
+            teamStat(df, team)
         elif (q4 == "avperpos"):
             q5 = str(input("Which position would you like to search for: "))
             avgPerPos(df, q5)
         elif (q4 == "minstat"):
-            q6 = str(input("Which statistic (YDS, TD, ATT, COMP)"))
+            q6 = str(input("Which statistic (YDS, TD, ATT, COMP): "))
             q7 = int(input("Enter minimum value: "))
             if (q6 == "YDS"):
                 minStatisticYDS(df, q7)
